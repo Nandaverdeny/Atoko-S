@@ -1,0 +1,43 @@
+﻿<table class="table" id="reports">
+    <thead>
+        <tr>
+            <th> ProductInID</th>
+            <th> Date </th>
+            <th> Product Code </th>
+            <th> Notes </th>
+            <th> Qty </th>
+            <th> Price </th>
+            <th> SubTotal </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.reportin)
+        {
+            <tr>
+                <td>@item.ProductInID</td>
+                <td>@item.Date</td>
+                <td>@item.ProductCode</td>
+                <td>@item.Notes</td>
+                <td>@item.Qty</td>
+                <td>@item.Price</td>
+                <td>@item.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<table>
+    <tr></tr>
+    <tr></tr>
+    <tr>
+        <td>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total</td>
+        <td><text id="total"></text></td>
+    </tr>
+</table>
+
+
+

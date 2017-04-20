@@ -1,0 +1,126 @@
+D:\AToko1\AToko\bin\AToko.dll.config
+D:\AToko1\AToko\bin\AToko.dll
+D:\AToko1\AToko\bin\AToko.pdb
+D:\AToko1\AToko\bin\Antlr3.Runtime.dll
+D:\AToko1\AToko\bin\ATokoEntities.dll
+D:\AToko1\AToko\bin\EntityFramework.dll
+D:\AToko1\AToko\bin\EntityFramework.SqlServer.dll
+D:\AToko1\AToko\bin\Microsoft.AspNet.Identity.Core.dll
+D:\AToko1\AToko\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\AToko1\AToko\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\AToko1\AToko\bin\Microsoft.Owin.dll
+D:\AToko1\AToko\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.Cookies.dll
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.dll
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.Facebook.dll
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.Google.dll
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.OAuth.dll
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.Twitter.dll
+D:\AToko1\AToko\bin\Microsoft.Web.Infrastructure.dll
+D:\AToko1\AToko\bin\Newtonsoft.Json.dll
+D:\AToko1\AToko\bin\Owin.dll
+D:\AToko1\AToko\bin\System.Web.Helpers.dll
+D:\AToko1\AToko\bin\System.Web.Mvc.dll
+D:\AToko1\AToko\bin\System.Web.Optimization.dll
+D:\AToko1\AToko\bin\System.Web.Razor.dll
+D:\AToko1\AToko\bin\System.Web.WebPages.Deployment.dll
+D:\AToko1\AToko\bin\System.Web.WebPages.dll
+D:\AToko1\AToko\bin\System.Web.WebPages.Razor.dll
+D:\AToko1\AToko\bin\WebGrease.dll
+D:\AToko1\AToko\bin\ZXing.Net.Mobile.Core.dll
+D:\AToko1\AToko\bin\zxing.portable.dll
+D:\AToko1\AToko\bin\ZXingNetMobile.dll
+D:\AToko1\AToko\bin\ATokoEntities.pdb
+D:\AToko1\AToko\bin\System.Web.Helpers.xml
+D:\AToko1\AToko\bin\System.Web.Mvc.xml
+D:\AToko1\AToko\bin\System.Web.Optimization.xml
+D:\AToko1\AToko\bin\System.Web.Razor.xml
+D:\AToko1\AToko\bin\System.Web.WebPages.xml
+D:\AToko1\AToko\bin\System.Web.WebPages.Deployment.xml
+D:\AToko1\AToko\bin\System.Web.WebPages.Razor.xml
+D:\AToko1\AToko\bin\Antlr3.Runtime.pdb
+D:\AToko1\AToko\bin\Newtonsoft.Json.xml
+D:\AToko1\AToko\bin\EntityFramework.xml
+D:\AToko1\AToko\bin\EntityFramework.SqlServer.xml
+D:\AToko1\AToko\bin\Microsoft.AspNet.Identity.Core.xml
+D:\AToko1\AToko\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\AToko1\AToko\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\AToko1\AToko\bin\Microsoft.Owin.xml
+D:\AToko1\AToko\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.xml
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.Facebook.xml
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.Cookies.xml
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.OAuth.xml
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.Google.xml
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.Twitter.xml
+D:\AToko1\AToko\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\AToko1\AToko\obj\Release\AToko.csprojResolveAssemblyReference.cache
+D:\AToko1\AToko\obj\Release\AToko.DataContexts.ATokoMigrations.InitialCreate.resources
+D:\AToko1\AToko\obj\Release\AToko.DataContexts.IdentityMigrations.InitialCreate.resources
+D:\AToko1\AToko\obj\Release\AToko.csproj.GenerateResource.Cache
+D:\AToko1\AToko\obj\Release\AToko.dll
+D:\AToko1\AToko\obj\Release\AToko.pdb
+I:\Kuliah\Project KP\AToko1\AToko\bin\AToko.dll.config
+I:\Kuliah\Project KP\AToko1\AToko\bin\AToko.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\AToko.pdb
+I:\Kuliah\Project KP\AToko1\AToko\bin\Antlr3.Runtime.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\ATokoEntities.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\EntityFramework.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\EntityFramework.SqlServer.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.AspNet.Identity.Core.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.AspNet.Identity.Owin.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Host.SystemWeb.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.Cookies.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.Facebook.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.Google.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.OAuth.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.Twitter.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Web.Infrastructure.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Newtonsoft.Json.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\Owin.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Net.Http.Formatting.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Helpers.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Http.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Http.WebHost.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Mvc.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Optimization.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Razor.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.WebPages.Deployment.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.WebPages.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.WebPages.Razor.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\WebGrease.dll
+I:\Kuliah\Project KP\AToko1\AToko\bin\ATokoEntities.pdb
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Net.Http.Formatting.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Http.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Http.WebHost.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Helpers.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Mvc.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Optimization.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.Razor.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.WebPages.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.WebPages.Deployment.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\System.Web.WebPages.Razor.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Antlr3.Runtime.pdb
+I:\Kuliah\Project KP\AToko1\AToko\bin\Newtonsoft.Json.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\EntityFramework.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\EntityFramework.SqlServer.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.AspNet.Identity.Core.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.AspNet.Identity.Owin.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Host.SystemWeb.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.Facebook.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.Cookies.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.OAuth.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.Google.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.Twitter.xml
+I:\Kuliah\Project KP\AToko1\AToko\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+I:\Kuliah\Project KP\AToko1\AToko\obj\Release\AToko.csprojResolveAssemblyReference.cache
+I:\Kuliah\Project KP\AToko1\AToko\obj\Release\AToko.dll
+I:\Kuliah\Project KP\AToko1\AToko\obj\Release\AToko.pdb

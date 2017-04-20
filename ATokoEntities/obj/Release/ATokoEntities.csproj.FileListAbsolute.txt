@@ -1,0 +1,10 @@
+D:\AToko1\ATokoEntities\bin\Release\ATokoEntities.dll
+D:\AToko1\ATokoEntities\bin\Release\ATokoEntities.pdb
+D:\AToko1\ATokoEntities\obj\Release\ATokoEntities.dll
+D:\AToko1\ATokoEntities\obj\Release\ATokoEntities.pdb
+D:\AToko1\ATokoEntities\obj\Release\ATokoEntities.csprojResolveAssemblyReference.cache
+I:\Kuliah\Project KP\AToko1\ATokoEntities\bin\Release\ATokoEntities.dll
+I:\Kuliah\Project KP\AToko1\ATokoEntities\bin\Release\ATokoEntities.pdb
+I:\Kuliah\Project KP\AToko1\ATokoEntities\obj\Release\ATokoEntities.csprojResolveAssemblyReference.cache
+I:\Kuliah\Project KP\AToko1\ATokoEntities\obj\Release\ATokoEntities.dll
+I:\Kuliah\Project KP\AToko1\ATokoEntities\obj\Release\ATokoEntities.pdb

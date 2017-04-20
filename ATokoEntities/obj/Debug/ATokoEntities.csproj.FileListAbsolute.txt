@@ -1,0 +1,19 @@
+D:\AToko1\ATokoEntities\bin\Debug\ATokoEntities.dll
+D:\AToko1\ATokoEntities\bin\Debug\ATokoEntities.pdb
+D:\AToko1\ATokoEntities\obj\Debug\ATokoEntities.dll
+D:\AToko1\ATokoEntities\obj\Debug\ATokoEntities.pdb
+D:\AToko1\ATokoEntities\obj\Debug\ATokoEntities.csprojResolveAssemblyReference.cache
+D:\Semester 1 2\D-2-2-2016\AToko1\ATokoEntities\bin\Debug\ATokoEntities.dll
+D:\Semester 1 2\D-2-2-2016\AToko1\ATokoEntities\bin\Debug\ATokoEntities.pdb
+D:\Semester 1 2\D-2-2-2016\AToko1\ATokoEntities\obj\Debug\ATokoEntities.csprojResolveAssemblyReference.cache
+D:\Semester 1 2\D-2-2-2016\AToko1\ATokoEntities\obj\Debug\ATokoEntities.dll
+D:\Semester 1 2\D-2-2-2016\AToko1\ATokoEntities\obj\Debug\ATokoEntities.pdb
+I:\Kuliah\Project KP\AToko1\ATokoEntities\bin\Debug\ATokoEntities.dll
+I:\Kuliah\Project KP\AToko1\ATokoEntities\bin\Debug\ATokoEntities.pdb
+I:\Kuliah\Project KP\AToko1\ATokoEntities\obj\Debug\ATokoEntities.dll
+I:\Kuliah\Project KP\AToko1\ATokoEntities\obj\Debug\ATokoEntities.pdb
+\\vmware-host\Shared Folders\From VM\College File\AToko1\ATokoEntities\bin\Debug\ATokoEntities.dll
+\\vmware-host\Shared Folders\From VM\College File\AToko1\ATokoEntities\bin\Debug\ATokoEntities.pdb
+\\vmware-host\Shared Folders\From VM\College File\AToko1\ATokoEntities\obj\Debug\ATokoEntities.dll
+\\vmware-host\Shared Folders\From VM\College File\AToko1\ATokoEntities\obj\Debug\ATokoEntities.pdb
+\\vmware-host\Shared Folders\From VM\College File\AToko1\ATokoEntities\obj\Debug\ATokoEntities.csprojResolveAssemblyReference.cache

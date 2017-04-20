@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewBag.Title = "Report Stock";
+}
+<script>
+    $(document).ready(function () {
+        $('#tablereport').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel'
+            ]
+        });
+
+        initializeChart();
+    });
+    $(document).ajaxComplete(function () {
+        $('#tablereport').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel'
+            ]
+        });
+        
+        initializeChart();
+    });
+
+</script>
+
+<h2>Report Stock</h2>
+
+<div class="form-horizontal">
+
+    <div class="form-group">
+        <div class="control-label col-md-2">Date Start:</div>
+        <div class="col-md-10">
+            <input class="form-control" type="date" id="min" name="min">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">Date End:</div>
+        <div class="col-md-10">
+            <input class="form-control" type="date" id="max" name="max">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Search" class="btn btn-default" onclick="a()" />
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Report</h3>
+    </div>
+    <div class="panel-body">
+        <div id="report">
+
+            <div class="row" >
+
+                
+                <div id="container" style="min-width: 30%; height: 40%; margin: 0 auto"></div>
+                
+                
+                @*<div class="col-md-6">
+                    <div id="container1" style="min-width: 30%; height: 40%; margin: 0 auto"></div>
+                </div>*@
+                
+            </div>
+
+            <br /><br />
+
+            <table class="table" id="tablereport">
+                <thead>
+                    <tr>
+
+                        <th> Product Name </th>
+                        <th> Product Code </th>
+                        <th> In</th>
+                        <th> Out</th>
+                        <th> Stock </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (AToko.Models.ReportStock item in ViewBag.reporttoday)
+                    {
+                        <tr class="tr_row">
+
+                            <td class="productname">@item.ProductName</td>
+                            <td class="productcode">@item.ProductCode</td>
+                            <td class="productin">@item.ProductIn</td>
+                            <td class="productout">@item.ProductOut</td>
+                            <td class="stock">@item.Stock</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function initializeChart() {
+
+        var listProductName = [];
+        var listStocks = [];
+        var listProductIn = [];
+        var listProductOut = [];
+
+        $('.tr_row').each(function (index, item) {
+            //console.log(item, index);
+
+            //var obj = [
+            //       $(item).find('.productname').text(),
+            //       parseInt($(item).find('.productin').text())
+            //]
+
+                listProductName.push($(item).find('.productname').text());
+                listStocks.push(parseInt($(item).find('.stock').text()));
+                listProductIn.push(parseInt($(item).find('.productin').text()));
+                listProductOut.push(parseInt($(item).find('.productout').text()));
+            
+        });
+
+        //var collection1 = [];
+
+        //$('.tr_row').each(function (index, item) {
+        //    //console.log(item, index);
+
+        //    var obj = [
+        //           $(item).find('.productname').text(),
+        //           parseInt($(item).find('.productout').text())
+        //    ]
+
+        //    collection1.push(obj);
+        //});
+
+        //console.log(collection);
+
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Remaining Stock'
+            },
+            xAxis: {
+                categories: listProductName
+            },
+            yAxis: [{
+                min: 0,
+                title: {
+                    text: 'Item (pcs)'
+                }
+            }],
+            legend: {
+                shadow: false
+            },
+            tooltip: {
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    grouping: false,
+                    shadow: false,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Product In',
+                color: 'rgba(165,170,217,1)',
+                data: listProductIn,//[150, 73, 20],
+                pointPadding: 0.3,
+                pointPlacement: -0.2
+            }, {
+                name: 'Product Out',
+                color: 'rgba(126,86,134,.9)',
+                data: listProductOut,//[140, 90, 40],
+                pointPadding: 0.4,
+                pointPlacement: -0.2
+            }, {
+                name: 'Stocks',
+                color: 'rgba(248,161,63,1)',
+                data: listStocks,//[183.6, 178.8, 198.5],
+                pointPadding: 0.3,
+                pointPlacement: 0.2
+            }]
+        });
+
+    };
+
+    function a() {
+        var date1 = $('#min').val();
+        var date2 = $('#max').val();
+        //console.log(date1, date2);
+        $.ajax({
+            type: "POST",
+            url: "/Report/ReportStocks",
+            data: { date1: date1, date2: date2 },
+            success: function (result) {
+                document.getElementById("report").innerHTML = result;
+                initializeChart();
+            }
+        })
+    };
+</script>
+

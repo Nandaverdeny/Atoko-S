@@ -1,0 +1,47 @@
+﻿<div class="row">
+    <div id="container" style="min-width: 30%; height: 40%; margin: 0 auto"></div>
+</div>
+
+<br /><br />
+
+<table class="table" id="reports">
+    <thead>
+        <tr>
+            <th> Product Code </th>
+            <th> In</th>
+            <th> Out</th>
+            <th> Stock </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in ViewBag.reportstock)
+        {
+            <tr>    
+                <td>@item.ProductCode</td>
+                <td>@item.ProductIn</td>
+                <td>@item.ProductOut</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<table>
+    <tr></tr>
+    <tr></tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total</td>
+        <td><text id="total"></text></td>
+    </tr>
+</table>
+
+
+
+
+
+

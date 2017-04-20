@@ -1,0 +1,36 @@
+﻿<table class="table" id="reports">
+    <thead>
+        <tr>
+            @*<th> ProductOutID </th>*@
+            <th> Product Code </th>
+            <th> Product Name </th>
+            <th> Date </th>
+            <th> Notes </th>
+            <th> Qty </th>
+            <th> Price </th>
+            <th> SubTotal </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (AToko.Models.Report item in ViewBag.reportout)
+        {
+            <tr>
+                @*<td>@item.ProductOutID</td>*@
+                <td>@item.ProductCode</td>
+                <td>@item.ProductName</td>
+                <td>@item.Date.ToShortDateString()</td>
+                <td>@item.Notes</td>
+                <td>@item.Qty</td>
+                <td class="numbers">@item.Price</td>
+                <td class="numbers">@item.Total</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+
+
+

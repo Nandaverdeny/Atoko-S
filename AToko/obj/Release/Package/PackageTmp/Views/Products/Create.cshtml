@@ -1,0 +1,176 @@
+﻿@model ATokoEntities.Product
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Product</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductCode, htmlAttributes: new { @class = "control-label col-md-2" })
+           
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control" } })
+                <label onclick="getScan()" class="btn btn-primary">Scan</label>
+                <label onclick="checkCode()" class="btn btn-warning">Check</label>
+
+                <span id="wrong" class="glyphicon glyphicon-remove" style="color:red; font-size:x-large; display:none;"></span>
+                <span id="right" class="glyphicon glyphicon-ok" style="color:green; font-size:x-large; display:none;"></span>
+
+                @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SupplierID, "SupplierName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SupplierID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> Buy Price</label>
+            <div class="col-md-10">
+                <input id="beli" type="text" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label class="control-label col-md-2"> Rate</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Kurs", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+            
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="btnSubmit" type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var code = window.location.href.split("=")[1];
+        if (code !== undefined) {
+            $("#ProductCode").val(code);
+        }
+    });
+
+
+    function getScan() {
+        var href = window.location.href.split("\?")[0];
+        //window.addEventListener("storage", zxinglistener, false);
+        zxingWindow = window.open("zxing://scan/?ret=" + encodeURIComponent(href + "?code={CODE}"), '_self');
+    }
+
+    $(function () {
+       
+        $(document).ready(function () {
+            $(".form-control").keyup(function () {
+                var val1 = $("#beli").val();
+                var val2 = $("#Kurs").val();
+                console.log(val1, val2);
+              
+                $("#Price").val(val1 * val2);
+               
+
+            });
+        });
+    })
+
+    function checkCode() {
+
+        var code = $("#ProductCode").val();
+        //console.log(code);
+
+        if (code != '' && code.length > 4) {
+            //$('#wrong').toggle();
+            //$('#right').toggle();
+            $("#ProductCode").attr('disabled', 'disabled');
+            $('#btnSubmit').attr('disabled', 'disabled');
+
+            $.ajax({
+                type: "POST",
+                url: "/Validation/checkCodeExist",
+                data: { code: code },
+                success: function (result) {
+                    //alert(result);
+
+                    if (result) {
+                        $('#right').show();
+                        $('#wrong').hide();
+                    } else {
+                        $('#right').hide();
+                        $('#wrong').show();
+                    }
+
+                    $('#btnSubmit').removeAttr('disabled');
+
+                    $("#ProductCode").removeAttr('disabled');
+                    //document.getElementById("report").innerHTML = result;
+                    //initializeChart();                                                
+                },
+                error: function () {
+
+                    $('#right').hide();
+                    $('#wrong').show();
+
+                    $('#btnSubmit').attr('disabled', 'disabled');
+
+                    $("#ProductCode").removeAttr('disabled');
+
+                }
+            });
+        }
+    }
+
+        
+   
+</script>
+
+

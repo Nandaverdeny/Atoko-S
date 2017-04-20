@@ -1,0 +1,183 @@
+﻿@model AToko.Models.ViewModel
+
+@{
+    ViewBag.Title = "Stock Prediction";
+}
+
+
+<h2>Stock Prediction</h2>
+
+
+
+    <div class="form-horizontal">
+        @using (Html.BeginForm("StockPrediction", "Report", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <p class="control-label col-md-2">Select a Product : </p>
+                <div class="col-md-10">
+                   @Html.DropDownListFor(m => m.ProductCode, new SelectList(Model.listProduct, "ProductCode", "ProductName", @Model.ProductCode), htmlAttributes: new
+                   {
+                       @class = "form-control selectpicker",
+                       @Value = @Model.ProductCode,
+                       data_show_subtext = "true",
+                       data_live_search = "true",
+                       data_width = "auto"
+                   })
+                </div>
+                <div class="col-md-offset-2 col-md-10">
+                    <input class="btn btn-default" type="submit" value="Select" />
+                </div>
+            </div>
+        }
+    </div>
+
+
+    <div class="row">
+
+
+        <div id="container" style="min-width: 30%; height: 40%; margin: 0 auto"></div>
+        <br />
+        <div class="col-md-10" style="min-width: 30%; height: 40%; margin: 0 auto">
+            <p class="control-label col-md-10" style="margin-left:50px;">
+                @ViewBag.Result
+            </p>
+        </div>
+        
+    </div>
+
+        <br /><br />
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                initializeChart();
+            });
+
+            function initializeChart() {
+
+
+                $('#container').highcharts({
+                    chart: {
+                        type: 'area'
+                    },
+                    title: {
+                        text: 'Product In Forecast and Actual For @ViewBag.productName'
+                    },
+                    xAxis: {
+                        categories : @Html.Raw(ViewBag.arrOrderDate)
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Product (Qty)'
+                        },
+                        allowDecimals: true,
+                        min:0,
+                        labels: {
+                            formatter: function () {
+                                return this.value;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        useHTML: true,
+                        formatter: function() {
+
+                            
+                            //return this.x + '<br/>' + '<span style="color:' + this.series.color + '">' + symbol + '</span>' + ' ' + this.series.name + ': ' + this.y;
+
+
+                            var s = '<b>' + this.x + '</b>';
+
+                            for (var i = 0; i < this.points.length; i++) {
+                                
+                                var symbol = '';
+
+                                if (this.points[i].series.symbol) {
+    
+                                    switch (this.points[i].series.symbol) {
+                                        case 'circle':
+                                            symbol = '&#9679';
+                                            break;
+                                        case 'diamond':
+                                            symbol = '&#9670';
+                                            break;
+                                        case 'square':
+                                            symbol = '&#9632';
+                                            break;
+                                        case 'triangle':
+                                            symbol = '&#9650';
+                                            break;
+                                        case 'triangle-down':
+                                            symbol = '&#9660';
+                                            break;
+                                    }
+                                }
+
+                                var x = i + 1;
+
+                                if (this.points[i].series.name == 'Product In Prediction' && x >= this.points.length){                                 
+                                    s += '<br/><span style="color:' + this.points[i].series.color + ';  font-size: 1em;">' + symbol + '</span>' + ' ' + this.points[i].series.name + ': ' + this.points[i].y;                                  
+                                } 
+                                else if (this.points[i].series.name != 'Product In Prediction')
+                                {
+                                    s += '<br/><span style="color:' + this.points[i].series.color + '; font-size: 1em;">' + symbol + '</span>' + ' ' + this.points[i].series.name + ': ' + this.points[i].y;
+                                }
+
+                            }
+
+                            return s;
+                        },
+                        shared: true
+                    },
+                    series: [
+                    {
+                        name: 'Product In Prediction',
+                        data: @Html.Raw(ViewBag.arrOrderResult),
+                        color: 'rgba(248,161,63,1)'
+                        //marker: {
+                        //    enabled: true,
+                        //    symbol: 'circle',
+                        //    states: {
+                        //        hover: {
+                        //            enabled: false
+                        //        }
+                        //    }
+                        //}
+                    },{
+                        name: 'Product In Actual',
+                        data: @Html.Raw(ViewBag.arrOrderQty),
+                        marker: {
+                            enabled: true,
+                            symbol: 'circle',
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                    ,{
+                        name: 'Product Sales',
+                        data: @Html.Raw(ViewBag.arrSalesQty),
+                        color: 'rgb(255, 101, 73)',
+                        marker: {
+                            enabled: true,
+                            symbol: 'circle',
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+
+                    ]
+
+                });
+
+            };
+
+
+        </script>

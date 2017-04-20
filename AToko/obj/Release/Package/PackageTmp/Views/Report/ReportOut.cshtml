@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Report Out";
+}
+
+<h2>Report Out</h2>
+
+
+<script>
+    $(document).ajaxComplete(function () {
+        $('#reports').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel'
+            ]
+        });
+    });
+</script>
+
+<div class="form-horizontal">
+
+    <div class="form-group">
+        <div class="control-label col-md-2">Date Start:</div>
+        <div class="col-md-10">
+            <input class="form-control" type="date" id="min" name="min">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">Date End:</div>
+        <div class="col-md-10">
+            <input class="form-control" type="date" id="max" name="max">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Search" class="btn btn-default" onclick="a()" />
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Report</h3>
+    </div>
+    <div class="panel-body">
+        <div id="report">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    function a() {
+        var date1 = $('#min').val();
+        var date2 = $('#max').val();
+        console.log(date1, date2);
+        $.ajax({
+            type: "POST",
+            url: "/Report/ReportOuts",
+            data: { date1: date1, date2: date2 },
+            success: function (result) {
+                document.getElementById("report").innerHTML = result;
+            }
+        }
+        )
+
+
+    };
+
+
+</script>
+
+
+
+
+
+
+
+

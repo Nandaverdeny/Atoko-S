@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AToko</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/buttons.dataTables.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/buttons.flash.min.js"></script>
+
+    <script src="~/Scripts/highcharts.js"></script>
+    <script src="~/Scripts/data.js"></script>
+    <script src="~/Scripts/exporting.js"></script>
+
+    @*<script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>*@
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("admin"))
+                    {
+                        @Html.ActionLink("AToko", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" });
+                    }
+                    else
+                    {
+                        @Html.ActionLink("AToko", "ReportStock", "Report", new { area = "" }, new { @class = "navbar-brand" });
+                    }
+                }
+                else
+                {
+                    @Html.ActionLink("AToko", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" });
+                }
+                
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("admin") )
+                    { 
+                    <li>@Html.ActionLink("Supplier","Index","Suppliers")</li>
+                    <li>@Html.ActionLink("Rates", "Index","Kurs")</li>
+                    <li>@Html.ActionLink("Product","Index","Products")</li>
+                    <li>@Html.ActionLink("Product In","Index","ProductIns")</li>
+                    <li>@Html.ActionLink("Product Out","Index","ProductOuts")</li>
+                    <li>@Html.ActionLink("Sales","Index","Sales")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Report
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Report/ReportIn">Report In</a></li>
+                            <li><a href="~/Report/ReportOut">Report Out</a></li>
+                            <li><a href="~/Report/ReportStock">Report Stock</a></li>
+                            <li><a href="~/Report/ReportSale">Report Sales</a></li>
+                        </ul>
+                    </li>
+                    }
+                    else if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Report
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="~/Report/ReportStock">Report Stock</a></li>
+                                <li><a href="~/Report/ReportSale">Report Sales</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+                    
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - AToko</p>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

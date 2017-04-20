@@ -1,0 +1,1 @@
+﻿select  ProductIns.ProductInID , ProductIns.ProductCode , ProductIns.Qty  , ProductIns.Price, ProductIns.Price*ProductIns.Qty as Total from ProductIns

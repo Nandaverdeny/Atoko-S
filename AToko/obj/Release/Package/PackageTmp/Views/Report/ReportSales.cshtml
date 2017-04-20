@@ -1,0 +1,51 @@
+﻿<div class="row">
+    <div id="container" style="min-width: 30%; height: 40%; margin: 0 auto"></div>
+</div>
+
+<br /><br />
+
+<table class="table" id="tablereport">
+    <thead>
+        <tr>
+            <th> Product Name </th>
+            <th> Product Code </th>
+            <th> Qty </th>
+            <th> Price (IDR)</th>
+            <th> Total (SGD)</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in ViewBag.reportsales)
+        {
+            <tr class="tr_row">
+
+                <td class="productname">@item.ProductName</td>
+                <td class="productcode">@item.ProductCode</td>
+                <td>@item.Qty</td>
+                <td>@item.Price</td>
+                <td class="total">@item.Total</td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+<table>
+    <tr></tr>
+    <tr></tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total</td>
+        <td><text id="total"></text></td>
+    </tr>
+</table>
+
+
+
+
+
+
