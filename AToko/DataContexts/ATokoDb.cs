@@ -20,8 +20,10 @@ namespace AToko.DataContexts
         public DbSet<ProductOut> ProductsOut { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Kurs> KursSG { get; set; }
+        
+        public DbSet<Log> AuditLogs { get; set; }
 
-        public System.Data.Entity.DbSet<AToko.Models.AccountSupplier> AccountSuppliers { get; set; }
+        //public System.Data.Entity.DbSet<AToko.Models.AccountSupplier> AccountSuppliers { get; set; }
 
     }
 }

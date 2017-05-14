@@ -35,7 +35,7 @@
                 </button>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    if (User.IsInRole("admin"))
+                    if (User.IsInRole("admin") || User.IsInRole("sales"))
                     {
                         @Html.ActionLink("AToko", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" });
                     }
@@ -74,7 +74,27 @@
                     </li>
                     <li>@Html.ActionLink("Prediction", "StockPrediction", "Report")</li>
                     }
-                    else if (User.Identity.IsAuthenticated)
+                    else if (User.IsInRole("sales") )
+                    {
+                   
+                    <li>@Html.ActionLink("Product In", "Index", "ProductIns")</li>
+                    <li>@Html.ActionLink("Product Out", "Index", "ProductOuts")</li>
+                    <li>@Html.ActionLink("Sales", "Index", "Sales")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Report
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Report/ReportIn">Report In</a></li>
+                            <li><a href="~/Report/ReportOut">Report Out</a></li>
+                            <li><a href="~/Report/ReportStock">Report Stock</a></li>
+                            <li><a href="~/Report/ReportSale">Report Sales</a></li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Prediction", "StockPrediction", "Report")</li>
+                    }
+                    else if (User.IsInRole("supplier"))
                     {
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">

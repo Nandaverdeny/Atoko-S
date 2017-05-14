@@ -2,4 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/AToko/bin
+*/bin
+*/obj/Debug
+*/obj/Release
+*/bin/Debug
+*/bin/Release

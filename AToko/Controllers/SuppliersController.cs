@@ -69,7 +69,7 @@ namespace AToko.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(supplier);
+            return View();
         }
 
         // GET: Suppliers/Edit/5

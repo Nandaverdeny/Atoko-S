@@ -19,12 +19,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProductCode, "ProductCode", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ProductCode", null, htmlAttributes: new {
-                   @class = "form-control selectpicker",
-                   @Value = @Model.ProductCode,
-                   data_show_subtext = "true",
-                   data_live_search = "true",
-                   data_width = "auto"
+                @Html.DropDownList("ProductCode", null, htmlAttributes: new
+                {
+                    @class = "form-control selectpicker",
+                    @Value = @Model.ProductCode,
+                    data_show_subtext = "true",
+                    data_live_search = "true",
+                    data_width = "auto"
                 })
                 @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
             </div>

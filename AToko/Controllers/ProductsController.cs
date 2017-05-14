@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AToko.DataContexts;
 using ATokoEntities;
+using AToko.Models;
 
 namespace AToko.Controllers
 {
@@ -66,13 +67,22 @@ namespace AToko.Controllers
                 product.KursID = db.KursSG.Where(o => o.Currency == "SGD").Select(o => o.KursID).FirstOrDefault();
                 db.Products.Add(product);
                 db.SaveChanges();
+
+                Logger.AddLog(
+                     User.Identity.Name,
+                     product.ProductID,
+                     Logger.Product,
+                     Logger.Add,
+                     Logger.DescriptionProduct(product.ProductCode, product.ProductName, product.KursID, product.Price)
+                 );
+
                 return RedirectToAction("Index");
             }
 
             var selectrate = (from b in db.KursSG
                               select new { b.Rate, text = b.Currency + "-" + b.Rate });
 
-            ViewBag.Kurs = new SelectList(selectrate.ToList(), "Rate", "text");
+            ViewBag.Kurs = new SelectList(selectrate.ToList(), "Rate", "text", product.KursID);
             ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "SupplierName", product.SupplierID);
             return View(product);
         }
@@ -92,8 +102,8 @@ namespace AToko.Controllers
             }
             var selectrate = (from b in db.KursSG
                               select new { b.Rate, text = b.Currency + "-" + b.Rate });
-            ViewBag.Kurs = new SelectList(selectrate.ToList(), "Rate", "text");
-            ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "SupplierName");
+            ViewBag.Kurs = new SelectList(selectrate.ToList(), "Rate", "text", product.KursID);
+            ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "SupplierName", product.SupplierID);
             return View(product);
         }
 
@@ -110,11 +120,20 @@ namespace AToko.Controllers
                 product.KursID = db.KursSG.Where(o => o.Currency == "SGD").Select(o => o.KursID).FirstOrDefault();
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
+
+                Logger.AddLog(
+                     User.Identity.Name,
+                     product.ProductID,
+                     Logger.Product,
+                     Logger.Edit,
+                     Logger.DescriptionProduct(product.ProductCode, product.ProductName, product.KursID, product.Price)
+                 );
+
                 return RedirectToAction("Index");
             }
             var selectrate = (from b in db.KursSG
                               select new { b.Rate, text = b.Currency + "-" + b.Rate });
-            ViewBag.Kurs = new SelectList(selectrate.ToList(), "Rate", "text");
+            ViewBag.Kurs = new SelectList(selectrate.ToList(), "Rate", "text", product.KursID);
             ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "SupplierName", product.SupplierID);
             return View(product);
         }
@@ -144,6 +163,15 @@ namespace AToko.Controllers
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
+
+            Logger.AddLog(
+                 User.Identity.Name,
+                 product.ProductID,
+                 Logger.Product,
+                 Logger.Delete,
+                 Logger.DescriptionProduct(product.ProductCode, product.ProductName, product.KursID, product.Price)
+             );
+
             return RedirectToAction("Index");
         }
 

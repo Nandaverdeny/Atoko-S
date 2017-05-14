@@ -20,7 +20,7 @@
             @Html.LabelFor(model => model.ProductCode, htmlAttributes: new { @class = "control-label col-md-2" })
            
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control" , onmouseout = "checkCode()" } })
                 <label onclick="getScan()" class="btn btn-primary">Scan</label>
                 <label onclick="checkCode()" class="btn btn-warning">Check</label>
 
@@ -83,7 +83,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input id="btnSubmit" type="submit" value="Create" class="btn btn-default" />
+                <input id="btnSubmit" type="submit" value="Create" class="btn btn-default" disabled="disabled"/>
             </div>
         </div>
     </div>
@@ -98,6 +98,48 @@
         var code = window.location.href.split("=")[1];
         if (code !== undefined) {
             $("#ProductCode").val(code);
+
+            if (code != '') {
+                //$('#wrong').toggle();
+                //$('#right').toggle();
+                $("#ProductCode").attr('disabled', 'disabled');
+                $('#btnSubmit').attr('disabled', 'disabled');
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Validation/checkCode",
+                    data: { code: code },
+                    success: function (result) {
+                        //alert(result);
+
+                        if (result == code) {
+                            $('#right').show();
+                            $('#wrong').hide();
+                        } else {
+                            $('#right').hide();
+                            $('#wrong').show();
+                        }
+
+                        $('#btnSubmit').removeAttr('disabled');
+
+                        $("#ProductCode").removeAttr('disabled');
+                        //document.getElementById("report").innerHTML = result;
+                        //initializeChart();                                                
+                    },
+                    error: function () {
+
+                        $('#right').hide();
+                        $('#wrong').show();
+
+                        $('#btnSubmit').attr('disabled', 'disabled');
+
+                        $("#ProductCode").removeAttr('disabled');
+
+                    }
+                });
+            } else {
+                $('#wrong').show();
+            }
         }
     });
 
@@ -116,19 +158,22 @@
                 var val2 = $("#Kurs").val();
                 console.log(val1, val2);
               
-                $("#Price").val(val1 * val2);
+                if (val1 != null && val1 != '' && val1 != undefined) {
+                    $("#Price").val(val1 * val2);
+                }
                
 
             });
+           
         });
     })
 
     function checkCode() {
 
-        var code = $("#ProductCode").val();
+        var code = $("#ProductCode").val().trim();
         //console.log(code);
 
-        if (code != '' && code.length > 4) {
+        if (code != '') {
             //$('#wrong').toggle();
             //$('#right').toggle();
             $("#ProductCode").attr('disabled', 'disabled');

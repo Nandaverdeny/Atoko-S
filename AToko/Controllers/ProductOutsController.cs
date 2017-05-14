@@ -12,7 +12,7 @@ using AToko.Models;
 
 namespace AToko.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin, sales")]
     public class ProductOutsController : Controller
     {
         private ATokoDb db = new ATokoDb();
@@ -78,10 +78,23 @@ namespace AToko.Controllers
                 //var obj = db.Products.Where(o => o.ProductCode == sale.ProductCode).FirstOrDefault();
                 //sale. = obj.ProductID;
 
+                //var oldobj = db.ProductsOut.Find(productOut.ProductOutID);
+                var productName = db.Products.Where(o => o.ProductCode == productOut.ProductCode).FirstOrDefault().ProductName;
+
+
                 if (productOut.Qty <= stock)
                 {
                     db.ProductsOut.Add(productOut);
                     db.SaveChanges();
+
+                    Logger.AddLog(
+                         User.Identity.Name,
+                         productOut.ProductOutID,
+                         Logger.ProductOut,
+                         Logger.Add,
+                         Logger.DescriptionQty(productOut.ProductCode, productName, productOut.Qty, productOut.Qty)
+                     );
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -146,10 +159,22 @@ namespace AToko.Controllers
 
                 int stock = list.Where(o => o.ProductCode == productOut.ProductCode).FirstOrDefault().Stock + qtyBefore;
 
+                var oldobj = db.ProductsOut.Find(productOut.ProductOutID);
+                var productName = db.Products.Where(o => o.ProductCode == productOut.ProductCode).FirstOrDefault().ProductName;
+
                 if (productOut.Qty <= stock)
                 {
                     db.Entry(obj).State = EntityState.Modified;
                     db.SaveChanges();
+
+                    Logger.AddLog(
+                        User.Identity.Name,
+                        productOut.ProductOutID,
+                        Logger.ProductOut,
+                        Logger.Edit,
+                        Logger.DescriptionQty(productOut.ProductCode, productName, productOut.Qty, qtyBefore)
+                    );
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -193,8 +218,19 @@ namespace AToko.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ProductOut productOut = db.ProductsOut.Find(id);
+            var productName = db.Products.Where(o => o.ProductCode == productOut.ProductCode).FirstOrDefault().ProductName;
+
             db.ProductsOut.Remove(productOut);
             db.SaveChanges();
+
+            Logger.AddLog(
+                User.Identity.Name,
+                productOut.ProductOutID,
+                Logger.ProductOut,
+                Logger.Delete,
+                Logger.DescriptionQty(productOut.ProductCode, productName, productOut.Qty, productOut.Qty)
+            );
+
             return RedirectToAction("Index");
         }
 

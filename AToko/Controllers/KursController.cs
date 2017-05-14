@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AToko.DataContexts;
 using ATokoEntities;
+using AToko.Models;
 
 namespace AToko.Controllers
 {
@@ -58,6 +59,15 @@ namespace AToko.Controllers
             {
                 db.KursSG.Add(kurs);
                 db.SaveChanges();
+
+                Logger.AddLog(
+                     User.Identity.Name,
+                     kurs.KursID,
+                     Logger.Rate,
+                     Logger.Add,
+                     Logger.DescriptionRate(kurs.Currency, kurs.Rate)
+                 );
+
                 return RedirectToAction("Index");
             }
 
@@ -92,6 +102,15 @@ namespace AToko.Controllers
             {
                 db.Entry(kurs).State = EntityState.Modified;
                 db.SaveChanges();
+
+                Logger.AddLog(
+                     User.Identity.Name,
+                     kurs.KursID,
+                     Logger.Rate,
+                     Logger.Edit,
+                     Logger.DescriptionRate(kurs.Currency, kurs.Rate)
+                 );
+
                 return RedirectToAction("Index");
             }
             return View(kurs);
@@ -120,9 +139,31 @@ namespace AToko.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Kurs kurs = db.KursSG.Find(id);
-            db.KursSG.Remove(kurs);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+            //if rate is been used on products then cannot delete
+            if (db.Products.Where(o => o.KursID == kurs.KursID).Count() > 0)
+            {
+                ViewBag.Msg = "Can't delete, Rate is been used by Product";
+                return View(kurs);
+            }
+            else if (db.Products.Where(o => o.KursID == kurs.KursID).Count() == 0)
+            {
+                db.KursSG.Remove(kurs);
+                db.SaveChanges();
+
+                Logger.AddLog(
+                     User.Identity.Name,
+                     kurs.KursID,
+                     Logger.Rate,
+                     Logger.Delete,
+                     Logger.DescriptionRate(kurs.Currency, kurs.Rate)
+                 );
+
+                return RedirectToAction("Index");
+            }
+            //
+
+            return View(kurs);
         }
 
         protected override void Dispose(bool disposing)

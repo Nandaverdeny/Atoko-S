@@ -143,7 +143,7 @@ namespace AToko.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult _RegisterSupplier()
         {
             List<string> roles;
             using (var context = new IdentityDb())
@@ -154,8 +154,8 @@ namespace AToko.Controllers
                 roles = (from u in roleManager.Roles select u.Name).ToList();
             }
 
-            
-           // ViewBag.SupplierName = new SelectList(selectmachine.ToList(), "SupplierName", "text");
+
+            // ViewBag.SupplierName = new SelectList(selectmachine.ToList(), "SupplierName", "text");
             ViewBag.Roles = new SelectList(roles);
             return View();
         }
@@ -165,7 +165,7 @@ namespace AToko.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> _RegisterSupplier(AccountSupplierViewModel model)
         {
             List<string> roles;
             using (var context = new IdentityDb())
@@ -177,7 +177,7 @@ namespace AToko.Controllers
                     roles = (from r in roleManager.Roles select r.Name).ToList();
 
 
-                    var user = new ApplicationUser { UserName = model.Username , SupplierName= model.SupplierName};
+                    var user = new ApplicationUser { UserName = model.Username, SupplierName = model.SupplierName };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -191,14 +191,83 @@ namespace AToko.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        return RedirectToAction("Create","Suppliers");
+                        return RedirectToAction("Create", "Suppliers");
                     }
                     AddErrors(result);
                 }
 
 
                 // If we got this far, something failed, redisplay form
-                return PartialView(model);
+                //return PartialView(model);
+                return RedirectToAction("Create", "Suppliers", model);
+            }
+        }
+
+        //
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            List<IdentityRole> roles;
+            using (var context = new IdentityDb())
+            {
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                roles = (from u in roleManager.Roles select u).ToList();
+            }
+
+
+            // ViewBag.SupplierName = new SelectList(selectmachine.ToList(), "SupplierName", "text");
+            ViewBag.Roles = roles;//new SelectList(roles,"Role","Role");
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel model)
+        {
+            List<IdentityRole> roles;
+            if (model.Role != "supplier")
+            {
+                model.SupplierName = "";
+            }
+            using (var context = new IdentityDb())
+            {
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+                roles = (from r in roleManager.Roles select r).ToList();
+
+                if (ModelState.IsValid)
+                {
+
+                    var user = new ApplicationUser { UserName = model.Username , SupplierName= model.SupplierName};
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await UserManager.FindAsync(model.Username, model.Password);
+                        await this.UserManager.AddToRoleAsync(user.Id, model.Role);
+
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        return RedirectToAction("Index","Home");
+                    }
+                    AddErrors(result);
+                }
+
+
+                ViewBag.Roles = roles;//new SelectList(roles, "Role", "Role");
+                // If we got this far, something failed, redisplay form
+                //return PartialView(model);
+                return RedirectToAction("Register", "Account", model);
             }
         }
 

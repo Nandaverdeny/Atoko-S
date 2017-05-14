@@ -25,7 +25,7 @@
         <h1>Welcome to AToko</h1>
         @if (User.Identity.IsAuthenticated)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("sales"))
             {
                 <p class="lead">Use navigation bar to proceed to another page.</p>
             }

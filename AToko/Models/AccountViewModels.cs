@@ -79,7 +79,7 @@ namespace AToko.Models
         public string ConfirmPassword { get; set; }
 
         public string Role { get; set; }
-        [Required]
+        //[Required]
         public string SupplierName { get; set; }
     }
     

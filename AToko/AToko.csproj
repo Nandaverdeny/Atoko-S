@@ -49,6 +49,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -198,12 +199,15 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RegisterSupplier.cs" />
+    <Compile Include="Models\Logger.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\FuzzyViewModel.cs" />
     <Compile Include="Models\ReportSales.cs" />
     <Compile Include="Models\ReportStock.cs" />
     <Compile Include="Models\StockNumberViewModel.cs" />
     <Compile Include="Models\Date.cs" />
+    <Compile Include="Models\AccountSupplierViewModel.cs" />
+    <Compile Include="Models\SupplierViewModel.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -334,6 +338,7 @@
     <Content Include="Views\Report\ReportSale.cshtml" />
     <Content Include="Views\StockNumber\View.cshtml" />
     <Content Include="Views\Report\StockPrediction.cshtml" />
+    <Content Include="Views\Account\_RegisterSupplier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Kurs.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductIn.cs" />
     <Compile Include="ProductOut.cs" />
